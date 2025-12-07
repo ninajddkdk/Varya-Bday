@@ -1,0 +1,155 @@
+/* style.css — адаптивный дизайн + вертикальное видео 9:16 */
+
+/* =========== Переменные =========== */
+:root{
+  --bg-start: #f7d9e9;
+  --bg-end:   #e0f2f7;
+  --card-bg: rgba(255,255,255,0.95);
+  --accent: #ff4081;
+  --accent-dark: #e0326e;
+  --title: #e91e63;
+  --purple: #673ab7;
+  --text: #333;
+  --muted: #777;
+}
+
+/* =========== Общие сбросы =========== */
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;padding:0;font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
+img,video{display:block;max-width:100%;height:auto}
+
+/* =========== Фон и центрирование страницы =========== */
+/* .page-wrapper позволяет корректно центрировать карточку и при этом прокручивать при большой высоте */
+body{
+  background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-end) 100%);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+}
+.page-wrapper{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;      /* по горизонтали */
+  align-items:center;          /* по вертикали (если контент не очень высокий) */
+  padding:20px;
+}
+
+/* =========== Карточка (контейнер) =========== */
+.container{
+  width:94%;
+  max-width:1000px;
+  margin:0 auto;
+  padding:32px;
+  background:var(--card-bg);
+  border-radius:16px;
+  box-shadow:0 14px 40px rgba(0,0,0,0.12);
+  text-align:center;
+  overflow:auto;
+  max-height:94vh; /* если контента много, внутренняя прокрутка */
+}
+
+/* =========== Заголовки и текст =========== */
+h1{
+  font-family: "Pacifico", cursive;
+  color:var(--title);
+  font-size:2.6rem;
+  margin:6px 0 18px;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.06);
+}
+h2{ color:var(--purple); font-size:1.6rem; margin:24px 0 10px; }
+.greeting-text{ font-size:1.05rem; color:#444; margin-bottom:22px; line-height:1.5; }
+
+/* =========== Видео вертикальное 9:16 ===========
+   padding-bottom = (16/9)*100% = 177.78%  */
+.responsive-video-container-vertical{
+  position:relative;
+  width:60%;           /* на десктопе: 60% от контейнера */
+  max-width:420px;     /* максимум ширины плеера */
+  margin: 18px auto;
+  padding-bottom:177.78%;
+  height:0;
+  overflow:hidden;
+  border-radius:12px;
+  background:#000;
+  box-shadow:0 8px 22px rgba(0,0,0,0.12);
+}
+.responsive-video-container-vertical video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover; /* обрезает края, если нужно заполнить */
+  display:block;
+  border-radius:12px;
+}
+/* =========== Галерея фото (адаптивная сетка) =========== */
+.photo-gallery{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap:16px;
+  margin:28px 0;
+}
+.photo-gallery img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-radius:10px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.10);
+  transition:transform .25s ease, box-shadow .25s ease;
+}
+.photo-gallery img:hover{ transform:translateY(-6px) scale(1.03); box-shadow:0 14px 30px rgba(0,0,0,0.17); }
+
+/* =========== Форма / кнопка =========== */
+.form-section{ margin-top:32px; padding:20px; background:rgba(252,228,236,0.9); border-radius:12px; }
+.cute-button{
+  display:inline-block;
+  background:var(--accent);
+  color:#fff;
+  text-decoration:none;
+  padding:12px 28px;
+  border-radius:28px;
+  font-weight:700;
+  font-size:1rem;
+  box-shadow:0 8px 22px rgba(255,64,129,0.22);
+  transition:transform .18s ease, background .18s ease;
+}
+.cute-button:hover{ transform:translateY(-4px); background:var(--accent-dark); }
+.small-text{ color:var(--muted); font-size:.92rem; margin-top:12px; }
+
+/* =========== Конфетти (контейнер для JS) =========== */
+.confetti-container{
+  position:fixed; top:0; left:0; width:100%; height:100%;
+  pointer-events:none; z-index:9999; overflow:hidden;
+}
+.confetti{ position:absolute; border-radius:2px; opacity:0.95; transform: translateY(-10vh); animation: fall linear infinite; }
+@keyframes fall{ to{ transform: translateY(110vh) rotate(360deg); } }
+
+/* =========== Адаптивность: планшет/телефон =========== */
+@media (max-width: 900px){
+  h1{ font-size:2.2rem; }
+  .responsive-video-container-vertical{ width:52%; max-width:360px; padding-bottom:177.78%; }
+  .photo-gallery img{ height:170px; }
+  .container{ padding:26px; }
+}
+@media (max-width: 640px){
+  h1{ font-size:1.8rem; margin-top:0; }
+  h2{ font-size:1.3rem; }
+  .greeting-text{ font-size:.98rem; }
+  .container{ width:95%; padding:18px; margin:10px auto; }
+  /* На телефоне делаем видео более широким в процентах, чтобы комфортно смотреть */
+  .responsive-video-container-vertical{ width:86%; max-width:420px; padding-bottom:177.78%; }
+  .photo-gallery{ gap:12px; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+  .photo-gallery img{ height:160px; }
+  .cute-button{ font-size:.98rem; padding:10px 20px; }
+}
+@media (max-width:420px){
+  h1{ font-size:1.5rem; }
+  .photo-gallery img{ height:150px; }
+  .responsive-video-container-vertical{ width:92%; max-width:360px; }
+}
+
+/* =========== Удобства для печати/временного теста ===========
+   если хочешь убрать тень/фон для экономии трафика, закомментируй соответствующие правила */
+@media print{
+  .confetti-container, .cute-button{ display:none; }
+  body{ background:#fff; }
+}
