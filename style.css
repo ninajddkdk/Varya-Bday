@@ -1,6 +1,4 @@
-/* style.css — адаптивный дизайн + вертикальное видео 9:16 */
 
-/* =========== Переменные =========== */
 :root{
   --bg-start: #f7d9e9;
   --bg-end:   #e0f2f7;
@@ -12,14 +10,10 @@
   --text: #333;
   --muted: #777;
 }
-
-/* =========== Общие сбросы =========== */
 *{box-sizing:border-box}
 html,body{height:100%;margin:0;padding:0;font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
 img,video{display:block;max-width:100%;height:auto}
 
-/* =========== Фон и центрирование страницы =========== */
-/* .page-wrapper позволяет корректно центрировать карточку и при этом прокручивать при большой высоте */
 body{
   background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-end) 100%);
   color:var(--text);
@@ -28,12 +22,11 @@ body{
 .page-wrapper{
   min-height:100vh;
   display:flex;
-  justify-content:center;      /* по горизонтали */
-  align-items:center;          /* по вертикали (если контент не очень высокий) */
+  justify-content:center;      
+  align-items:center;         
   padding:20px;
 }
 
-/* =========== Карточка (контейнер) =========== */
 .container{
   width:94%;
   max-width:1000px;
@@ -44,10 +37,9 @@ body{
   box-shadow:0 14px 40px rgba(0,0,0,0.12);
   text-align:center;
   overflow:auto;
-  max-height:94vh; /* если контента много, внутренняя прокрутка */
+  max-height:94vh; 
 }
 
-/* =========== Заголовки и текст =========== */
 h1{
   font-family: "Pacifico", cursive;
   color:var(--title);
@@ -58,12 +50,10 @@ h1{
 h2{ color:var(--purple); font-size:1.6rem; margin:24px 0 10px; }
 .greeting-text{ font-size:1.05rem; color:#444; margin-bottom:22px; line-height:1.5; }
 
-/* =========== Видео вертикальное 9:16 ===========
-   padding-bottom = (16/9)*100% = 177.78%  */
 .responsive-video-container-vertical{
   position:relative;
-  width:60%;           /* на десктопе: 60% от контейнера */
-  max-width:420px;     /* максимум ширины плеера */
+  width:60%;        
+  max-width:420px;    
   margin: 18px auto;
   padding-bottom:177.78%;
   height:0;
@@ -77,11 +67,10 @@ h2{ color:var(--purple); font-size:1.6rem; margin:24px 0 10px; }
   inset:0;
   width:100%;
   height:100%;
-  object-fit:cover; /* обрезает края, если нужно заполнить */
+  object-fit:cover; 
   display:block;
   border-radius:12px;
 }
-/* =========== Галерея фото (адаптивная сетка) =========== */
 .photo-gallery{
   display:grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -98,7 +87,6 @@ h2{ color:var(--purple); font-size:1.6rem; margin:24px 0 10px; }
 }
 .photo-gallery img:hover{ transform:translateY(-6px) scale(1.03); box-shadow:0 14px 30px rgba(0,0,0,0.17); }
 
-/* =========== Форма / кнопка =========== */
 .form-section{ margin-top:32px; padding:20px; background:rgba(252,228,236,0.9); border-radius:12px; }
 .cute-button{
   display:inline-block;
@@ -115,7 +103,6 @@ h2{ color:var(--purple); font-size:1.6rem; margin:24px 0 10px; }
 .cute-button:hover{ transform:translateY(-4px); background:var(--accent-dark); }
 .small-text{ color:var(--muted); font-size:.92rem; margin-top:12px; }
 
-/* =========== Конфетти (контейнер для JS) =========== */
 .confetti-container{
   position:fixed; top:0; left:0; width:100%; height:100%;
   pointer-events:none; z-index:9999; overflow:hidden;
@@ -123,7 +110,6 @@ h2{ color:var(--purple); font-size:1.6rem; margin:24px 0 10px; }
 .confetti{ position:absolute; border-radius:2px; opacity:0.95; transform: translateY(-10vh); animation: fall linear infinite; }
 @keyframes fall{ to{ transform: translateY(110vh) rotate(360deg); } }
 
-/* =========== Адаптивность: планшет/телефон =========== */
 @media (max-width: 900px){
   h1{ font-size:2.2rem; }
   .responsive-video-container-vertical{ width:52%; max-width:360px; padding-bottom:177.78%; }
@@ -135,7 +121,6 @@ h2{ color:var(--purple); font-size:1.6rem; margin:24px 0 10px; }
   h2{ font-size:1.3rem; }
   .greeting-text{ font-size:.98rem; }
   .container{ width:95%; padding:18px; margin:10px auto; }
-  /* На телефоне делаем видео более широким в процентах, чтобы комфортно смотреть */
   .responsive-video-container-vertical{ width:86%; max-width:420px; padding-bottom:177.78%; }
   .photo-gallery{ gap:12px; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
   .photo-gallery img{ height:160px; }
@@ -147,9 +132,65 @@ h2{ color:var(--purple); font-size:1.6rem; margin:24px 0 10px; }
   .responsive-video-container-vertical{ width:92%; max-width:360px; }
 }
 
-/* =========== Удобства для печати/временного теста ===========
-   если хочешь убрать тень/фон для экономии трафика, закомментируй соответствующие правила */
 @media print{
   .confetti-container, .cute-button{ display:none; }
   body{ background:#fff; }
+}
+* Стили для прикреплённых открыток */
+.friends-greetings { margin-top:36px; padding-top:12px; }
+.friends-greetings h2 { margin-bottom:14px; color:var(--accent); }
+
+.greetings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+  align-items: start;
+}
+ 
+.greeting-card{
+  --r: 0deg;
+  position: relative;
+  padding: 14px 14px 12px;
+  background: linear-gradient(180deg,#fffef0,#fff8e6);
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(17,17,17,0.12), 0 2px 6px rgba(0,0,0,0.06);
+  transform: rotate(var(--r));
+  transition: transform .18s ease;
+  border: 1px solid rgba(0,0,0,0.04);
+  font-family: 'Patrick Hand', system-ui, sans-serif;
+  text-align: left;
+}
+
+.greeting-card::before{
+  content: "";
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 14px;
+  background: radial-gradient(circle at 30% 30%, #fff, #f3c2c2);
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+  border: 2px solid rgba(0,0,0,0.06);
+  z-index: 3;
+}
+
+.friend-name { margin: 0 0 6px 0; font-weight:700; color:var(--purple); }
+.friend-text { margin: 0; line-height:1.45; color:var(--text); }
+
+.greeting-card:hover { transform: scale(1.02) rotate(calc(var(--r) * 1.0)); }
+
+.greeting-card:nth-child(1) { --r: -3deg; }
+.greeting-card:nth-child(2) { --r: 4deg; }
+.greeting-card:nth-child(3) { --r: -6deg; }
+.greeting-card:nth-child(4) { --r: 5deg; }
+.greeting-card:nth-child(5) { --r: -2deg; }
+.greeting-card:nth-child(6) { --r: 3deg; }
+.greeting-card:nth-child(7) { --r: -5deg; }
+
+
+@media (max-width:420px){
+  .greetings-grid { gap:12px; }
+  .greeting-card { padding:12px; }
 }
